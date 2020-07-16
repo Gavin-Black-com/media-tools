@@ -51,7 +51,7 @@ def plot_cube(positions,sizes=None,colors=None, size=(1,1,1), **kwargs):
     return Poly3DCollection(np.concatenate(g),  
                             facecolors=np.repeat(colors,6, axis=0), **kwargs)
 
-def make_voxels(positions, colors=None, size=(1,1,1)):
+def make_voxels(positions, colors=None, size=(1,1,1), lims_min=(0,0,0), lims_max=(10,10,10)):
     global fig,ax
     if colors == None:
         colors= [[0.27450980392156865, 0.9176470588235294, 0.7411764705882353]] * len(positions)
@@ -59,9 +59,9 @@ def make_voxels(positions, colors=None, size=(1,1,1)):
     pc = plot_cube(positions, colors=colors, size=size) # to outline: edgecolor="k"
     ax.add_collection3d(pc)
     # Graph ranges
-    ax.set_xlim([0,10])
-    ax.set_ylim([0,10])
-    ax.set_zlim([0,10])
+    ax.set_xlim([lims_min[0],lims_max[0]])
+    ax.set_ylim([lims_min[1],lims_max[1]])
+    ax.set_zlim([lims_min[2],lims_max[2]])
 
 def draw_line(start, end, color=(0.38823529411764707, 0.5490196078431373, 0.611764705882353)):
     global ax
