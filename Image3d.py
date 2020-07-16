@@ -68,9 +68,9 @@ def make_voxels(positions, colors=None, size=(1,1,1), lims_min=(0,0,0), lims_max
     ax.set_ylim([lims_min[1],lims_max[1]])
     ax.set_zlim([lims_min[2],lims_max[2]])
 
-def draw_line(start, end, color=(0.38823529411764707, 0.5490196078431373, 0.611764705882353)):
+def draw_line(start, end, color=(0.38823529411764707, 0.5490196078431373, 0.611764705882353), size=2, style='solid'):
     global ax
-    ax.plot([start[0], end[0]], [start[1],end[1]],[start[2],end[2]], color=color)
+    ax.plot([start[0], end[0]], [start[1],end[1]],[start[2],end[2]], color=color, linewidth=size, linestyle=style)
 
 
 def to_pil():
