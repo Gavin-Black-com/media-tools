@@ -16,7 +16,7 @@ for x in range(360):
     p = p.crop((100, 100, 400, 400))
   #  p = p.resize((300,300))
     VidLib.img.paste(p, (0,0,300,300))
-    VidLib.text("3D Test")
+    VidLib.text("3D Test", color=(70, 234, 189) )
     VidLib.next()
     print(x)
 VidLib.done()
