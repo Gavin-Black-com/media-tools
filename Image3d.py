@@ -1,4 +1,6 @@
 from mpl_toolkits.mplot3d import Axes3D
+import io
+import PIL
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
@@ -30,12 +32,7 @@ def cuboid_data(o, size=(1,1,1)):
          [[-0.5, -0.5, 0.5], [-0.5, -0.5, -0.5], [-0.5, 0.5, -0.5], [-0.5, 0.5, 0.5]],
          [[-0.5, 0.5, -0.5], [-0.5, 0.5, 0.5], [0.5, 0.5, 0.5], [0.5, 0.5, -0.5]],
          [[-0.5, 0.5, 0.5], [-0.5, -0.5, 0.5], [0.5, -0.5, 0.5], [0.5, 0.5, 0.5]]]
-#    X = [[[0, 1, 0], [0, 0, 0], [1, 0, 0], [1, 1, 0]],
-#         [[0, 0, 0], [0, 0, 1], [1, 0, 1], [1, 0, 0]],
-#         [[1, 0, 1], [1, 0, 0], [1, 1, 0], [1, 1, 1]],
-#         [[0, 0, 1], [0, 0, 0], [0, 1, 0], [0, 1, 1]],
-#         [[0, 1, 0], [0, 1, 1], [1, 1, 1], [1, 1, 0]],
-#         [[0, 1, 1], [0, 0, 1], [1, 0, 1], [1, 1, 1]]]
+
     X = np.array(X).astype(float)
     for i in range(3):
         X[:,:,i] *= size[i]
@@ -67,6 +64,13 @@ def draw_line(start, end, color=(0.38823529411764707, 0.5490196078431373, 0.6117
     global ax
     ax.plot([start[0], end[0]], [start[1],end[1]],[start[2],end[2]], color=color)
 
+
+def to_pil():
+    global fig
+    buf = io.BytesIO()
+    fig.savefig(buf)
+    buf.seek(0)
+    return PIL.Image.open(buf)
 
 def example():
     start_3d()
