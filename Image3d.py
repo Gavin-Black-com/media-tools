@@ -11,7 +11,7 @@ import matplotlib.lines as mlines
 global fig
 global ax
 
-def start_3d(outline=None, bgcolor='#283653'):
+def start_3d(outline=None, bgcolor='#283653', cubecolor=(1.0, 1.0, 1.0, 0.0), spinecolor=(1.0, 1.0, 1.0, 0.0)):
     global fig,ax
     plt.rcParams['figure.facecolor'] = bgcolor
     plt.rcParams['axes.facecolor'] = bgcolor
@@ -19,6 +19,14 @@ def start_3d(outline=None, bgcolor='#283653'):
     ax = fig.gca(projection='3d')
     ax.grid(False)
     ax.set_aspect('equal')
+
+    # Inner cube colors
+    ax.xaxis.set_pane_color(cubecolor)
+    ax.yaxis.set_pane_color(cubecolor)
+    ax.zaxis.set_pane_color(cubecolor)
+    ax.xaxis.line.set_color(spinecolor)
+    ax.yaxis.line.set_color(spinecolor)
+    ax.zaxis.line.set_color(spinecolor)
 
     # Hide axes ticks
     ax.set_xticks([])
